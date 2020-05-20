@@ -13,5 +13,150 @@
 
 	\clearpage
 
+	\setcounter{section}{0}
+	
+	\section{Пространство кусочно-непрерывных функций на отрезке как пример евклидова пространства. Неравенство Коши-Буняковского на этом пространстве (б.д.). Ортогональные и ортонормированные системы в евклидовом пространстве. Главный пример: $C([-\pi; \pi])$}
+	
+	Напомним, что евклидово пространство - это векторное пространство над полем вещественных чисел со скалярным произведением.
+	
+	\textit{Свойства скалярного произведения:}
+	
+	1. $\langle u, v \rangle=\langle v, u\rangle$
+	
+	2. $\langle \lambda_1 u_1 + \lambda_2 u_2, v\rangle=\lambda_1 \langle u_1, v\rangle+\lambda_2 \langle u_1, v \rangle$
+	
+	3. $\langle v,v \rangle \ge 0$
+	
+	3'. $\langle v,v \rangle = 0 \Rightarrow v=0$\\
+	
+	Рассмотрим векторное пространство $V=\hat C([a; b])$ - множество кусочно-непрерывных функций на $[a; b]$ (имеющих конечное число точек разрыва первого рода), обладающих также следующим свойством:
+	
+	$f(c)=\frac{1}{2}(\lim\limits_{x \rightarrow c-0} f(x) + \lim\limits_{x \rightarrow c+0} f(x))$
+	
+	 Определим на $\hat C$ скалярное произведение $\langle f, g \rangle =\int\limits_a^b f(x)g(x)dx$ и проверим свойства, чтобы показать его корректность.
+	
+	1-3 очевидны. 3' сначала рассмотрим для непрерывной на отрезке функции. 
+	От противного: пусть на отрезке существует какая-то точка $c$, в которой функция принимает ненулевое значение. Тогда $f^2(c) > 0$. В силу непрерывности есть такая окрестность $(c-\delta; c+\delta)$, в которой $f^2(x) \ge \epsilon > 0$.
+	
+	$\int\limits_a^b f^2(x) \ge \int\limits_{c-\delta}^{c+\delta} f(x) \ge 2\delta\epsilon > 0$
+	
+	Для $\hat C$ отрезок разваливается на конечное число отрезков непрерывности, применим к ним предыдущее.
+	
+	\begin{theorem} (неравенство Коши-Буняковского) $\langle f, g \rangle^2 \le \langle f, f \rangle \cdot \langle g, g \rangle$ \end{theorem}
+	
+	Для нашего пространства оно имеет вид 
+	
+	$\int\limits_a^b f(x)g(x)dx \le \int\limits_a^b f^2(x)dx \int\limits_a^b g^2(x)dx$
+	
+	\begin{definition}
+		Множество элементов  ${\psi_i} \in V$ называется \textit{ортогональной} системой, если для любой пары $\langle \psi_i, \psi_j\rangle=0$. Если при этом $\| \psi_i \|=1$ $\forall i$, то система \textit{отронормирована}.
+	\end{definition}
+
+	В $C([-\pi; \pi])$ следующая система является ортонормированной:
+	
+	$\{{\frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{\pi}}\cos x, \frac{1}{\sqrt{\pi}}\sin x, \frac{1}{\sqrt{\pi}}\cos {2x}, \cdots}\}$\\
+	
+	Проверим норму на примере $\cos$:
+	
+	$\| \frac{1}{\sqrt{\pi}}\cos {kx}\|= \frac{1}{\sqrt{\pi}}
+	 \sqrt{\int\limits_{-\pi}^{\pi} \cos^2 (kx) dx}=
+	 \frac{1}{\sqrt{2\pi}} \sqrt{\int\limits_{-\pi}^{\pi} \cos(2kx) + 1}=\frac{1}{\sqrt{2\pi}} \sqrt{2\pi}=1$
+	
+	Любая функция с $\cos$ ортогональна любой с $\sin$ в силу нечетности. Проверим ортогональность двух функций с $\cos$:
+	
+	$\langle \frac{1}{\sqrt{\pi}} \cos(kx), \frac{1}{\sqrt{\pi}}\cos(lx) \rangle=\frac{1}{\pi}\int\limits_{-\pi}^{\pi}\cos(kx) \cos(lx) dx=\frac{1}{2\pi}\int\limits_{-\pi}^{\pi}(\cos((k+l)x)+\cos((k-l)x)) dx=0$
+	
+	Остальное оставим в качестве упражнения для пытливого читателя.
+	
+	\section{Задача о наилучшем приближении элемента евклидова пространства элементом конечномерного пространства (б.д.). Ряд Фурье по произвольной ортонормированной системе. Ряд Фурье по тригонометрической системе.}
+	
+	Пусть имеется ортонормированная система $\{{\psi_i}\}$ в векторном пространстве $V$. Хотим найти наилучшее приближение элемента $f$ этого пространства вида $\sum c_k \psi_k$ (т.е. $\|f-\sum c_k \psi_k\| \rightarrow min$). Утверждается, что $c_k=\langle f, \psi_k\rangle$.
+	
+	 \begin{definition}
+	 	\textit{Ряд Фурье по произвольной ортонормированной системе $\{{\psi_i}\}$} - это сумма вида $\sum c_k \psi_k$
+	 \end{definition}
+ 
+	 \begin{definition}
+	 	\textit{Ряд Фурье по тригонометрической системе} - это сумма вида $\frac{f_0}{\sqrt{2\pi}} +\sum \frac{f_k}{\sqrt{\pi}}cos(kx) + \frac{\hat f_k}{\sqrt{\pi}}sin(kx)$, где $f_0=\frac{1}{\sqrt{2\pi}}\int\limits_{-\pi}^{\pi} f(x) dx$, $f_k=\frac{1}{\sqrt{\pi}}\int\limits_{-\pi}^{\pi} f(x)cos(kx), \hat f_k=\frac{1}{\sqrt{\pi}}\int\limits_{-\pi}^{\pi} f(x)cos(kx) dx$
+	 \end{definition}
+ 
+ 	Обычно ряд Фурье записывают как $\frac{a_0}{2} + \sum a_k cos(kx) + b_k sin(kx)$,
+ 	
+ 	где $a_0=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x) dx$, $a_k=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x)cos(kx), b_k=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x)cos(kx) dx$
+	
+	\section{Неравенство Бесселя (идея доказательства). Определения замкнутой и полной ортонормированных систем (ОНС). Тождество Парсеваля для замкнутой ОНС.}
+	
+	\begin{theorem} 
+		(неравенство Бесселя) $\sum_{i=1}^{\infty} f_k^2 \le \| f \|^2$, где $f$ - элемент векторного пространства $V$ с ортонормированной системой $\{{\psi_i}\}$, $f_i = \langle f, \psi_i \rangle$ 
+	\end{theorem}
+	\begin{proof}
+		$0 \le \| f- \sum_{i=1}^{n} f_i \psi_i\|^2=\|f\|^2-\sum_{i=1}^{n} \|\langle f, \psi_i \rangle \|^2=\|f\|^2-\sum_{i=1}^{n} f_i ^2$ 
+		
+		$\sum_{i=1}^{n} f_i^2$ ограничена сверху $\Rightarrow$  сходится. Переходим к пределу, получаем требуемое. 
+	\end{proof}
+
+	\begin{definition}
+		Ортонормированная система \textit{замкнута}, если $\forall \epsilon > 0 \; \exists n \in \mathbb{N} \; \exists c1, \cdots, c_n \; \| f-\sum_{i=1}^{n} c_k \psi_k\| < \epsilon$
+	\end{definition}
+
+	\begin{definition}
+		Ортонормированная система \textit{полна}, если $[\; \forall k \in \mathbb{N} \ \Rightarrow f \perp \psi_k] \Rightarrow f \equiv 0$
+	\end{definition}
+
+	\begin{theorem} 
+		(тождество Парсеваля) Для замкнутой ОНС  $\sum_{i=1}^{\infty} f_k^2 = \| f \|^2$ 
+	\end{theorem}
+	\begin{proof}
+		Зафиксируем $\epsilon$.
+		Из определения замкнутости $\exists n \in \mathbb{N} \; \exists c1, \cdots, c_n \; \| f-\sum_{i=1}^{n} c_k \psi_k\| < \epsilon$. 
+		
+		Из неравенства Бесселя $\|f\|^2-\sum_{i=1}^{n} f_i ^2 \le \| f-\sum_{i=1}^{n} c_k \psi_k\|^2 \le \epsilon^2$. 
+		
+		Тогда для $m \ge n$ и подавно $\|f\|^2-\sum_{i=1}^{m} f_i ^2 \le \| f-\sum_{i=1}^{n} c_k \psi_k\|^2 \le \epsilon^2$
+		
+		Значит, $\forall \epsilon > 0 \; \exists n \in \mathbb{N} \; \forall m \ge n \; \|f\|^2-\sum_{i=1}^{m} f_i ^2 \le \epsilon^2$, и из этого и следует равенство в пределе.
+	\end{proof}
+	
+	\section{Бывают ли замкнутые ортонормированные системы, но не полные?}
+	
+	Не бывает. Пусть $\forall i \; f\perp \psi_i$. Значит, $f_i=0$. В силу замкнутости справедливо тождество Парсеваля. то есть $\|f\|^2=\sum_{i=1}^{\infty}f_i=0$
+	
+	\section{Дайте определение свертки двух функций $f, g: \mathbb{R}^n \to \mathbb{R}$. Докажите, что операция свертки коммутативна. Дайте определение свертки двух $2\pi$ периодических функций $f, g: \mathbb{R} \to \mathbb{R}$.}
+	
+	\begin{definition}
+		\textit{Сверткой} функций $f, g: \mathbb{R}^n \to \mathbb{R}$ называется $(f*g)(t)=\int\limits_{\mathbb{R}^n} f(x)g(t-x)dx$
+	\end{definition}
+
+	\begin{theorem} 
+		$(f*g) \equiv (g*f)$ 
+	\end{theorem}
+	\begin{proof}
+		Положим $\tau=t-x$.
+		
+		$\int\limits_{\mathbb{R}^n} f(x)g(t-x)dx=-\int\limits_{\mathbb{R}^n} f(\tau-t)g(\tau)d\tau=\int\limits_{\mathbb{R}^n} f(t-\tau)g(\tau)d\tau$
+	\end{proof}
+	\begin{definition}
+		\textit{Сверткой} $2\pi$ периодических функций $f, g: \mathbb{R} \to \mathbb{R}$ называется $(f*g)(t)=\int\limits_{-\pi}^{\pi} f(x)g(t-x)dx$
+	\end{definition}
+	
+	\section{Дайте определения ядра Дирихле и ядра Фейера. Какой смысл у свертки произвольной периодической функции с этими ядрами? (б.д.)}
+	
+	\begin{definition}
+		\textit{Ядром Дирихле} называется $D_n(t)=\frac{\sin[(n+\frac{1}{2})t]}{2\sin{\frac{t}{2}}}$
+	\end{definition}
+
+	Обозначим $S_n(x,f)=\frac{a_0}{2} + \sum_{k=1}^{n} a_k cos(kx) + b_k sin(kx)$, где $f$ - $2\pi$ периодическая и интегрируемая на $[-\pi; \pi]$. 
+	
+	Тогда справедливо $S_n(x, f)=\frac{1}{\pi}\int\limits_{-\pi}^{\pi}f(x+t)D_n(t) dt$ - то есть свертка с ядром Дирихле дает нам $n$-ю частичную сумму ряда Фурье.
+
+	\begin{definition}
+		\textit{Ядром Фейера} называется $\Phi_n(t)=\frac{\sin^2(\frac{tn}{2})}{2\sin^2{\frac{t}{2}}}$
+	\end{definition}
+
+	Обозначим $\sigma_n(x,f)=\frac{S_0(x, f)+\cdots+S_{n-1}(x, f)}{n}$ - среднее арифметическое ряда Фурье. 
+	
+	Для $f$ с теми же свойствами будет верно $\sigma_n(x, f)=\frac{1}{n\pi}\int\limits_{-\pi}^{\pi}f(x+t)\Phi_n(t) dt$
+	 
+	\section{Сформулируйте (б.д.) теоремы о приближении $2\pi$ периодической функции тригонометрическими многочленами: о сходимости ядра Фурье в точке, и о приближении функции тригонометрическими многочленами в различных функциональных метриках.} 
 
 \end{document}
