@@ -82,7 +82,7 @@
 
 	Для случая $k = 2$ это всё можно записать в следующую формулу.
 
-	\[\iint\limits_\Omega P\diff y \land \diff x + Q \diff z \land \diff x + R \diff x \land \diff y = \iint\limits_M \begin{vmatrix} P & Q & R \\ \frac{\partial \varphi_1}{\partial u} & \frac{\partial \varphi_2}{\partial u} & \frac{\partial \varphi_3}{\partial u} \\ \frac{\partial \varphi_1}{\partial v} & \frac{\partial \varphi_2}{\partial v} & \frac{\partial \varphi_3}{\partial v} \end{vmatrix} \diff u \diff v;\]
+	\[\iint\limits_\Omega P\diff y \land \diff z + Q \diff z \land \diff x + R \diff x \land \diff y = \iint\limits_M \begin{vmatrix} P & Q & R \\ \frac{\partial \varphi_1}{\partial u} & \frac{\partial \varphi_2}{\partial u} & \frac{\partial \varphi_3}{\partial u} \\ \frac{\partial \varphi_1}{\partial v} & \frac{\partial \varphi_2}{\partial v} & \frac{\partial \varphi_3}{\partial v} \end{vmatrix} \diff u \diff v;\]
 
 	Обратите внимание, при $Q$ стоит $\diff z \land \diff x$, а не $\diff x \land \diff z$. 
 
@@ -118,7 +118,41 @@
 
 	При этом слагаемые вида $\frac{\partial^2 f}{\partial x_i \partial x_i} \diff x_i \land \diff x_i$ сразу зануляются, а слагаемые вида $\frac{\partial^2 f}{\partial x_i \partial x_j} \diff x_j \land \diff x_i$ сократятся с $\frac{\partial^2 f}{\partial x_j \partial x_i} \diff x_i \land \diff x_j$. Значит $\diff(\diff f) = 0$.
 
-	Пусть теперь $\Omega$ ---~ $k$-мерное многообразие с согласованными ориентациями на самом многообразии и на границе, а $\omega$ ---~ дифференциальная $(k - 1)$-форма на $\Omega$. Тогда верна (общая) формула Стокса:
+	Пусть теперь $\Omega \subseteq \mathbb{R}^n$ ---~ $k$-мерное многообразие с согласованными ориентациями на самом многообразии и на границе, а $\omega$ ---~ дифференциальная $(k - 1)$-форма на $\Omega$. Тогда верна (общая) формула Стокса:
 
 	\[ \int\limits_{\partial \Omega} \omega = \int\limits_\Omega \diff \omega; \] 
+
+	\section{Выведите из общей формулы Стокса частные случаи: формулу Ньютона-Лейбница, формулу Грина, формулу Гаусса-Остроградского.}
+
+	\subsection*{Формула Ньютона-Лейбница, $n = k = 1$}
+
+	Пусть наше многообразие это отрезок на прямой $[a; b]$. Его границей будет множество из двух точек $\{a, b\}$. Заметим, что точка ---~ это нульмерное многообразие и по нему можно интегрировать 0-формы (то есть просто функции). При чём этот интеграл будет с точностью до знака (знак как всегда определяется ориентацией) равен значению функции в точке. Если на отрезке мы берём стандартную ориентацию <<слева направо>>, то для границы это будет означать взятие $b$ с плюсом и $a$ с минусом. Итак, формула Стокса принимает следующий вид:
+	
+	\[F(b) - F(a) = \int\limits_a^b \diff F; \]
+	
+	Перепишем в более привычную запись.
+
+	\[\int\limits_a^b F'(x) \diff x = F(b) - F(a); \]
+
+	\subsection*{Формула Грина, $n = k = 2$}
+
+	Дифференциальная 1-форма в $\mathbb{R}^2$ имеет вид $P\diff x + Q \diff y$. Посчитаем её дифференциал
+
+	\[\diff (P \diff x + Q \diff y) = \left(\frac{\partial P}{\partial x}\diff x + \frac{\partial P}{\partial y}\diff y \right) \land \diff x +\left(\frac{\partial Q}{\partial x}\diff x + \frac{\partial Q}{\partial y}\diff y \right) \land \diff y = \frac{\partial P}{\partial y} \diff y \land \diff x + \frac{\partial Q}{\partial x} \diff x \land \diff y = \] \[ = \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) \diff x \land \diff y;  \]
+
+	Формула Стокса принимает следующий вид:
+
+	\[\int\limits_{\partial U} P\diff x + Q\diff y = \iint\limits_{U} \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)\diff x \diff y; \]
+
+	Здесь условие согласованности ориентации можно сформулировать как <<при обходе $\partial U$ по заданной параметризации $U$ всегда находится слева>>.
+
+	\subsection*{Формула Гаусса-Остроградского, $n = k = 3$}
+
+	Дифференциальная 2-форма в $\mathbb{R}^3$ имеет вид $P\diff y \land \diff x + Q \diff z \land \diff x + R \diff x \land \diff y$. Посчитаем её дифференциал.
+
+	\[\diff (P\diff y \land \diff z + Q \diff z \land \diff x + R \diff x \land \diff y) = \frac{\partial P}{\partial x} \diff x \land \diff y \land \diff z + \frac{\partial Q}{\partial y}\diff y \land \diff z \land \diff x + \frac{\partial R}{\partial z} \diff z \land \diff x \land \diff y  = \] \[ =\left( \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z} \right) \diff x \land \diff y \land \diff z; \]
+
+	Формула Стокса принимает следующий вид:
+
+	\[\iint\limits_{\partial V} P\diff y \land \diff x + Q \diff z \land \diff x + R \diff x \land \diff y = \iiint\limits_{V}\left( \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z} \right) \diff x\diff y\diff z; \]
 \end{document}
