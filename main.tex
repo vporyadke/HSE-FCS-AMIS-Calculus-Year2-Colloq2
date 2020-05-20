@@ -14,4 +14,204 @@
 	\clearpage
 
 
+	\setcounter{section}{13}
+\section{Дайте определение $k$-мерного подмногообразия в $\mathbb{R}^n$ и сопутствующее определение гладких координат. Приведите пример параметрической кривой, которая параметрически задана дифференцируемыми функциями, но не является гладким 1-мерным многообразием в какой-нибудь точке}
+Подмножество $M\subseteq \mathbb{R}^n$ называется гладким $k$-мерным (под)многообразием в $\mathbb{R}^n$, если $\forall x \in M$ существует окрестность $U$, $x\in U$, такая что на $M \cap U$ можно задать гладкие координаты.
+Гладкие координаты --- отображение $\Phi: V \xrightarrow{} M$, где $V \subseteq \mathbb{R}^k$
+\begin{gather*}
+\begin{cases}
+    x_1 = \phi_1(t_1, \dotsc, t_k)\\
+    \vdots\\
+    x_n = \phi_n(t_1, \dotsc, t_k)
+\end{cases}
+\end{gather*}
+где $(x_1, \dotsc, x_n)$ --- координаты в $\mathbb{R}^n$, $(t_1, \dotsc, t_k)$ --- координаты в $\mathbb{R}^k$,
+при этом $(t_1, \dotsc, t_k) \in V$ тогда и только тогда, когда $(x_1, \dotsc, x_n)\in M$. При этом $\phi_1,\dotsc,\phi_n$ дифференцируемы по каждой переменной и матрица частных производных невырождена.
+\begin{gather*}
+\begin{pmatrix}
+\frac{\partial \phi_1}{\partial t_1} & \frac{\partial \phi_2}{\partial t_1} & \cdots & \frac{\partial \phi_n}{\partial t_1} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial \phi_1}{\partial t_k} & \frac{\partial \phi_2}{\partial t_k} & \cdots & \frac{\partial \phi_n}{\partial t_k}
+\end{pmatrix}
+\end{gather*}
+Ранг этой матрицы должен быть $k$ в любой точке $t \in V$ (то есть все строчки должны быть линейно независимы.\\\\
+Пример:
+\begin{gather*}
+\begin{cases}
+    x=t^2\\
+    y=t^3
+\end{cases}
+\end{gather*}
+Обе функции дифференцируемые, но в точке $t=0$ обе производные обращаются в ноль. Поэтому кривая не гладкая.
+
+\section{Сформулируйте теорему о неявной функции. Допустим кривая $X \subseteq \mathbb{R}^2$ задана уравнением $f(x,y)=0$, и известно, что $\mathrm{grad}f(x_0,y_0)=(2;0)$. Какую из координат $x,y$ можно использовать в качестве локальной координаты на $X$ в окрестности точки $(x_0,y_0)$?}
+Пусть есть функция $F: \mathbb{R}^2\xrightarrow{} \mathbb{R}$, для которой выполнены условия:
+\begin{enumerate}
+\item $F$ определена и непрерывна в окрестности $(x_0,y_0)$ \item $F'_y(x_0,y_0)\not=0$ и $F'_y$ непрерывна в $(x_0,y_0)$ \item $F(x_0, y_0)=0$.
+\end{enumerate}
+Тогда найдётся окрестность $U_{\delta,\epsilon}(x_0,y_0)=\left\{(x,y)\left|\begin{array}{l}
+     x \in (x_0-\delta, x_0 +\delta) \\
+     y \in (y_0-\epsilon,y_0+\epsilon)
+\end{array}\right.\right\}$ и непрерывная функция $f$ такая, что в $U_{\delta,\epsilon}(x_0,y_0)\quad$ $F(x,y)=0 \Leftrightarrow y = f(x)$ (то есть можно выразить $y$ от $x$ в данной окрестности при выполненных выше условиях).\\
+Если кроме всех условий выше $F$ дифференцируема в $U_{\delta,\epsilon}(x_0,y_0)$, то $f$ дифференцируема в $U_{\delta}(x_0)$ и
+\begin{gather*}
+    f'(x_0)=-\frac{F'_x(x_0,y_0)}{F'_y(x_0,y_0)}
+\end{gather*}\\
+Задача: проверяем условия теоремы, производная по $x$ не равна нулю, а производная по $y$ равна. Значит в качестве координаты можно взять $y$, а $x$ --- нельзя. Обратите внимание, координата --- эта не та переменная, по которой дифференцируем.
+
+\section{Сформулируйте общую теорему о неявном отображении. Допустим, кривая $X \subseteq \mathbb{R}^3$ задана уравнениями $f(x,y,z)=0,\; g(x,y,z)=0$, и известно, что $\mathrm{grad}f(x_0,y_0,z_0)=(2;0;0)$, $\mathrm{grad}f(x_0, y_0, z_0)=(0;1;3)$. Какие из координат $x,y,z$ можно использовать в качестве локальных координат на $X$ в окрестности точки $(x_0,y_0,z_0)$?}
+Обозначения:
+$x=(x_1, \dotsc, x_n)$, $y=(y_1, \dotsc y_m)$, $(x, y) = (x_1, \dotsc, x_n, y_1, \dotsc y_m)$.\\
+Ещё обозначения: если функции $g_1,\dotsc,g_s$ зависят от $t_1,\dotsc,t_r$, то
+\begin{gather*}
+    \frac{D(g_1,\dotsc,g_s)}{D(t_1,\dotsc,t_r)} =
+    \begin{pmatrix}
+        \frac{\partial g_1}{\partial t_1} & \frac{\partial g_1}{\partial t_2} & \cdots & \frac{\partial g_1}{\partial t_r} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \frac{\partial g_s}{\partial t_1} & \frac{\partial g_s}{\partial t_2} & \cdots & \frac{\partial g_s}{\partial t_r}
+    \end{pmatrix}
+\end{gather*}
+(по строкам матрицы записаны градиенты (да, в 14 билете градиенты были записаны по столбцам, но так Айз давал на той лекции)).\\\\
+Разрешим теперь $m$ уравнений относительно $m$ неизвестных.\\
+Теорема: пусть
+\begin{enumerate}
+    \item $F_1 (x,y),\dotsc,F_m(x,y)$ --- непрерывно дифференцируемы в окрестности точки $(x^{(0)}, y^{(0)})$ (здесь верхние индексы, чтобы не путать с координатами)
+    \item $F_j(x^{(0)}, y^{(0)})=0 \quad \forall j=1,\dotsc,m$
+    \item det$\frac{D(F_1,\dotsc,F_m)}{D(y_1,\dotsc,y_m)}|_{(x^{(0)}, y^{(0)})}\not=0$
+\end{enumerate}
+Тогда существует окрестность $U_\delta(x^{(0)}) \times U_\epsilon(y^{(0)})$ и набор дифференцируемых функций $f_1(x_1,\dotsc,x_n),\dots,f_m(x_1,\dotsc,x_m)$, таких что в этой окрестности
+\begin{gather*}
+    \{F_j(x,y)=0\}^m_{j=1} \Leftrightarrow \{y_j=f_j(x)\}^m_{j=1}
+\end{gather*}
+при этом $f_j(x^{(0)})=y_j^{(0)}$.\\
+Более того,
+\begin{gather*}
+    \frac{D(f_1,\dotsc, f_m)}{D(x_1,\dotsc,x_n)}\Big|_{x^{(0)}}=-\Big(\frac{D(F_1,\dotsc,F_m)}{D(y_1,\dotsc,y_m)}\Big)^{-1}\Big|_{(x^{(0)}, y^{(0)})} \cdot \frac{D(F_1,\dotsc,F_m)}{D(x_1,\dotsc,x_n)}\Big|_{x^{(0)}}
+\end{gather*}\\
+Задача: Запишем матрицу
+\begin{gather*}
+\begin{pmatrix}
+    2 & 0 & 0\\
+    0 & 1 & 3
+\end{pmatrix}
+\end{gather*}
+Видим, что линейно независимы первый и второй столбец, и первый и третьей. Значит координатой может быть $z$ или $y$. Обратите внимание, если матрица производных по $x$ и $y$ невырождена, то подходит как координата $z$.
+
+
+\section{Дайте определение касательного вектора к подмножеству $X \subseteq \mathbb{R}^n$ в точке $A \in X$. Как устроено множество всех касательных векторов к гладкому подмногообразию в фиксированной точке?}
+Пусть $x^{(0)} \in X \subseteq \mathbb{R}^n$. Построим какую-нибудь кривую, которая целиком лежит в $X$ и проходит через $x^{(0)}$. Пусть эта кривая задаётся параметрически $x_i = \psi_i(s), s \in (-\epsilon, \epsilon)$, $(\psi_1(s), \dotsc, \psi_n(s)) \in X \; \forall s\in (-\epsilon,\epsilon)$ и $(\psi_1(0),\dotsc,\psi_n(0)) = x^{(0)}$. Тогда вектор $(\frac{d\psi_1}{ds}(0),\dotsc,\frac{d\psi_n}{ds}(0))$ называется касательным к $X$ в точке $x^{(0)}$ (если такой вектор определён, конечно).\\
+Обратите внимание, касательных векторов может быть бесконечно много, т. к. бесконечно много таких кривых.\\\\\
+Пусть $X$ теперь --- гладкое $k$-мерное многообразие и $x_i=\phi_i(t_1,\dotsc,t_k)$ --- гладкие координаты в окрестности точки $x^{(0)} = \Phi(t^{(0)})$. Тогда множество касательных векторов в точке $x^{(0)}$ образуют $k$-мерное векторное пространство (обозначается $T_{x^{(0)}}X$), линейно порождённое следующими векторами
+\begin{gather*}
+    \Big(\frac{\partial \phi_1}{\partial t_1}(t^{(0)}),\dotsc,\frac{\partial \phi_n}{\partial t_1}(t^{(0)})\Big)\\
+    \vdots\\
+    \Big(\frac{\partial \phi_1}{\partial t_k}(t^{(0)}),\dotsc,\frac{\partial \phi_n}{\partial t_k}(t^{(0)})\Big)
+\end{gather*}
+Замечание: эти вектора задают аффинное пространство, чтобы получить геометрическое касательное пространство, нужно сдвинуть $T_{x^{(0)}}X$ в точку $X^{(0)}$.
+
+\section{Допустим, что все точки множества $X \subset \mathbb{R}^n$ удовлетворяют уравнению $f(x)=0$. Докажите, что в любой точке $x^{(0)}\in X$ любой касательный вектор к $X$ перпендикулярен градиенту $\mathrm{grad}f(x^{(0)})$. Опишите касательное пространство к $k$-мерному подмногообразию $\mathbb{R}^n$, заданному системой неявных уравнений (без доказательства).}
+Имеем $\forall x \in X \; f(x) = 0$. Тогда для любой кривой $\{x_i=\phi_i(s)\} \subset X$ имеем $f(\phi_1(s),\dotsc,\phi_n(s))=0$. продифференцируем это по $s$, получаем
+\begin{gather*}
+    \frac{\partial f}{\partial x_1} \cdot \frac{f\phi_1}{ds}+\dotsc + \frac{\partial f}{\partial x_n} \cdot \frac{f\phi_n}{ds} = 0\\
+    <\mathrm{grad}f(x^{(0)}),\quad \text{касательный вектор к $X$ в точке $x^{(0)}$}>=0
+\end{gather*}
+Из того, что скалярное произведении равно нулю, следует, что градиент $f$ перпендикулярен касательному вектору к множеству $X$.\\\\
+По предыдущей теореме имеем, что касательное пространство --- ортогональное дополнение к линейной комбинации градиентов неявных уравнений.
+\section{Необходимое и достаточное условия локального экстремума для функции нескольких переменных (без доказательства).}
+Пусть дана дважды дифференцируемая функция $f(x_1,\dotsc,x_n)$. Необходимое условие: если $f(x^{(0)})$ - локальный экстремум, то $\frac{\partial f}{\partial x_i}(x^{(0)}) = 0 \forall x \in [1;n]$. Точка, в которой выполняется это условие, называется стационарной.\\
+Теперь, пусть $x^{(0)}$ --- стационарная точка, и пусть
+\begin{gather*}
+    D(x^{(0)}) = \begin{vmatrix}
+    \frac{\partial^2 f}{\partial^2 x_1} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1 \partial x_n}\\
+    \vdots\\
+    \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \cdots & \frac{\partial^2 f}{\partial^2 x_n}
+    \end{vmatrix}_{x^{(0)}}
+\end{gather*}
+Тогда:
+\begin{itemize}
+    \item Если $D>0$, то $x^{(0)}$ --- локальный экстремум, при этом если $\frac{\partial^2 f}{\partial^2 x_1}>0$, то это локальный минимум, а если $\frac{\partial^2 f}{\partial^2 x_1}<0$, то локальный максимум.
+    \item Если $D=0$, то $x^{(0)}$  может как являться локальным экстремумом, так и не являться.
+    \item Если $D<0$, то $x^{(0)}$ не является локальным экстремумом.
+\end{itemize}
+(для справки, эта матрица называется матрицой Гессе, а её определитель --- Гессианом.
+
+
+\section{Дайте определение точки условного минимума}
+
+Точка $x^{(0)}$ называется условным локальным минимумом подмножества $X \subset \mathbb{R}^n$, если существует окрестность $U(x^{(0)})$, такая что $\forall x \in U(x^{(0)}) \cap X \quad f(x) > f(x^{(0)})$\\
+Далее будем считать, что такое множество задаётся набором уравнений вида $\phi(x)=0$.
+
+\section{Сформулируйте теорему о множителях Лагранжа. Объясните идею доказательства в случае, если подмножество $X \subset \mathbb{R}^n$ является гладким многообразием.}
+
+Пусть у нас есть задача вида
+\begin{gather*}
+    \begin{cases}
+        f(x) \xrightarrow{} \mathrm{extr}\\
+        \phi_1(x)=0\\
+        \vdots\\
+        \phi_m(x)=0
+    \end{cases}\\
+    x \in \mathbb{R}^n\\
+    m < n
+\end{gather*}
+Функцией Лагранжа называется
+\begin{gather*}
+    L(x,\lambda) = f(x) - \sum_{i=1}^m \lambda_i g_i(x)\\
+    x \in \mathbb{R}^n\\
+    \lambda \in \mathbb{R}^m
+\end{gather*}
+$\lambda$ называют множителями Лагранжа.\\
+Теорема: пусть $x^{(0)}$ --- точка условного локального экстремума в задаче выше, и пусть в окрестности точки $x^{(0)}$ $X$ --- гладкое многообразие. Тогда существуют такие $\lambda^{(0)}$, что точка $(x^{(0)},\lambda^{(0)}) = (x^{(0)}_1,\dotsc, x^{(0)}_n, \lambda^{(0)}_1, \dotsc, \lambda^{(0)}_m) \in \mathbb{R}^{m+n}$ является стационарной для $L(x, \lambda)$.\\
+То есть
+\begin{gather*}
+\frac{\partial L}{\partial x_i}(x^{(0)},\lambda^{(0)}) = 0 \quad\forall i \in [1;n]\\
+\frac{\partial L}{\partial \lambda_i}(x^{(0)},\lambda^{(0)}) = 0 \quad\forall i \in [1;m]\\
+\end{gather*}
+Второе в силу линейности по $\lambda$ эквивалентно $g_i(x^{(0)})=0$, что означает, что $x^{(0)} \in X$.\\
+Посмотрим теперь на первое
+\begin{gather*}
+    \frac{\partial L}{\partial x_j} = \frac{\partial}{\partial x_j} (f(x) - \sum_{i=1}^m \lambda_i g_i(x)) = \frac{\partial  f}{\partial x_j} - \sum_{i=1}^m \lambda_i \frac{\partial g_i}{\partial x_j} = 0\\
+    \begin{pmatrix}
+        \frac{\partial f}{\partial x_1} \\
+        \vdots\\
+        \frac{\partial f}{\partial x_n}
+    \end{pmatrix}
+    - \lambda_1 \begin{pmatrix}
+        \frac{\partial g_1}{\partial x_1} \\
+        \vdots\\
+        \frac{\partial g_1}{\partial x_n}
+    \end{pmatrix}
+    - \dotsc
+    - \lambda_m \begin{pmatrix}
+        \frac{\partial g_m}{\partial x_1} \\
+        \vdots\\
+        \frac{\partial g_m}{\partial x_n}
+    \end{pmatrix} = \begin{pmatrix}
+        0\\
+        \vdots\\
+        0
+    \end{pmatrix}
+\end{gather*}
+Это значит, что
+\begin{gather*}
+    \mathrm{grad}f = \sum_{i=1}^m \lambda_i \mathrm{grad}g_i
+\end{gather*}
+Так как, все наши переходы были равносильными, нам осталось доказать, что найдутся такие $\lambda$, то есть, что $\mathrm{grad}f$ является линейной комбинацией $\mathrm{grad}g_i$ в данной точке.\\
+Поскольку $X$ гладкая в точке $x^{(0)}$, будем предполагать, что $X$ удовлетворяет условию следствия из теоремы о неявном отображении, то есть градиенты $\mathrm{grad}g_i$ линейно независимы. Без ограничения общности будем считать $x^{(0)}\in X \subset \mathbb{R}^n$ --- точка условного локального минимума. Тогда, если возьмём какую-нибудь кривую $\{x_i=\phi(t)\} \subseteq X$, такую, что $\phi_i(0)=x_i^{(0)}$, то на ней это также будет точка локального минимума, запишем касательный вектор
+\begin{gather*}
+    u = (\frac{d\phi_1}{dt}(0),\dotsc,\frac{d\phi_n}{dt}(0)) \in T_{x^{(0)}}X
+\end{gather*}
+Функция $\alpha(t)=f(\phi_1(t),\dotsc,\phi_n(t))$ имеет в $t=0$ локальный минимум. По теореме Ферма $\frac{d \alpha}{dt}(0) = 0$. А это
+\begin{gather*}
+    \frac{\partial f}{\partial x_1}(x^{(0)})\cdot \frac{d \phi_1}{dt}(0)+
+    \dotsc + \frac{\partial f}{\partial x_n}(x^{(0)})\cdot \frac{d \phi_n}{dt}(0) = <\mathrm{grad}f(x^{0}),u> = 0
+\end{gather*}
+Таким образом, градиент целевой функции в точки экстремума перпендикулярен любому касательному вектору $u \in T_{x^{(0)}}X$, то есть $\mathrm{grad}f(x^{(0)}) \perp T_{x^{(0)}}X$. А это значит, что этот градиент лежит в ортогональном дополнении
+\begin{gather*}
+    \mathrm{grad}f(x^{(0)}) \in (T_{x^{(0)}}X)^\perp = <\mathrm{grad}g_1(x^{(0)}),\dotsc,\mathrm{grad}g_m(x^{(0)})>
+\end{gather*}
+А раз $\mathrm{grad}f(x^{(0)})$ лежит в линейной оболочке$\mathrm{grad}g_i(x^{(0)})$, то он является их линейной комбинацией.
+	
+
+
 \end{document}
