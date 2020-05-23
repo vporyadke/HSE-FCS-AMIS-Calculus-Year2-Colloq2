@@ -14,8 +14,8 @@
     \clearpage
     
     \section*{Реклама}
-    \href{https://t.me/applied_memes}{@applied_memes}
-    \href{https://t.me/fcs_channels}{@fcs_channels}
+    \href{https://t.me/applied_memes}{@applied\_memes}\par
+    \href{https://t.me/fcs_channels}{@fcs\_channels}
 
 	\setcounter{section}{13}
 
@@ -258,5 +258,150 @@ $\lambda$ называют \textit{множителями Лагранжа}.\\
     \mathrm{grad}f(x^{(0)}) \in (T_{x^{(0)}}X)^\perp = <\mathrm{grad}g_1(x^{(0)}),\dotsc,\mathrm{grad}g_m(x^{(0)})>
 \end{gather*}
 А раз $\mathrm{grad}f(x^{(0)})$ лежит в линейной оболочке $\mathrm{grad}g_i(x^{(0)})$, то он является их линейной комбинацией.
+	\setcounter{section}{27}
+	\section{Дайте определение элемента площади 2-мерной поверхности в $\mathbb{R}^3$ и поверхностного интеграла 1-го рода}
 
+	Пусть имеется двумерная поверхность $\Omega \subseteq \mathbb{R}^3$ и у неё зафиксирована параметризация $\varphi:M \to \Omega, M \subseteq \mathbb{R}^2$. Будем обозначать координаты в $\mathbb{R}^3$ как $(x, y, z)$, а в $\mathbb{R}^2$ ---~ как $(u, v)$. Неформально говоря, элементом площади в точке поверхности называется площадь бесконечно малого параллелограмма со сторонами, направленными параллельно касательным векторам в этой точке. Можно провести аналогию с одномерными интегралами, где мы приближаем функцию с помощью ломаной с маленькими звеньями, и сказать, что мы приближаем поверхность маленькими чешуйками в форме параллелограммов. Запишем теперь формулу для элемента площади в точке $(u, v)$
+	
+	\[ \diff S = S(P(\varphi'_u(u, v), \varphi'_v(u, v))) \diff u \diff v; \]
+
+	Здесь $\varphi'_u, \varphi'_v$ --- трёхмерные векторы (так как $\varphi$ имеет три координаты), именно они являются касательными в данной точке; $P$ ---~ параллелограмм, натянутый на векторы; $S$ ---~ площадь. Из линейной алгебры мы знаем, что площадь параллелограмма можно считать как корень из определителя матрицы Грама его сторон. Это даёт нам новую формулу для элемента площади.
+
+	\[ \diff S = \sqrt{EG - F^2}\diff u \diff v; \]
+	
+	Здесь $E = \langle \varphi'_u, \varphi'_u \rangle = \| \varphi'_u \|^2, G = \langle \varphi'_v, \varphi'_v \rangle = \| \varphi'_v \|^2, F = \langle \varphi'_u, \varphi'_v \rangle$. 
+
+	Теперь мы можем естественным образом определить поверхностный интеграл 1-го рода от функции $f:\mathbb{R}^3 \to \mathbb{R}$ по $\Omega$.
+
+	\[ \iint\limits_\Omega f(x, y, z) \diff S := \iint\limits_M f(\varphi(u, v)) \sqrt{E(u, v)G(u, v) - F^2(u, v)} \diff u \diff v; \]
+
+	Здесь мы опираемся на параметризацию при определении интеграла. Можно проверить, что при смене параметризации значение интеграла 1-го рода не изменится. 
+
+	\section{Дайте определение элемента $k$-мерного объёма $k$-мерного многообразия в $\mathbb{R}^n$ и интеграла 1-го рода по $k$-мерному многообразию}
+
+	Пусть имеется $k$-мерное многообразие $\Omega \subseteq \mathbb{R}^n$ и у него зафиксирована параметризация $\varphi: M \to \Omega, M \subseteq \mathbb{R}^k$. Будем обозаначать координаты в $\mathbb{R}^n$ как $x = (x_1, \ldots, x_n)$, а в $\mathbb{R}^k$ ---~ как $t = (t_1, \ldots, t_k)$. Аналогично предыдущему билету, определим элемент $k$-мерного объёма в точке $t$.
+
+	\[ \diff \! \mathit{Vol}_k = S(P(\varphi'_{t_1}(t), \ldots, \varphi'_{t_k}(t))) \diff t_1 \ldots \diff t_k; \]
+
+	Запишем теперь формулу для интеграла 1-го рода от функции $f:\mathbb{R}^n \to \mathbb{R}$ по $\Omega$.
+
+	\[ \int\limits_\Omega f(x) \diff \! \mathit{Vol}_k := \int\limits_M f(\varphi(t))S(P(\varphi'_{t_1}(t), \ldots, \varphi'_{t_k}(t))) \diff t_1 \ldots \diff t_k;  \]
+
+	Опять же, можно проверить, что интеграл 1-го рода не зависит от параметризации.
+
+	\section{Объясните, что такое грассманово умножение, грассмановы переменные, грассмановы мономы}
+
+	Пусть у нас имеется набор символов $a_1, \ldots, a_n$ ---~ грассмановых переменных и мы умеем брать их линейные комбинации. То есть, например, у нас есть отдельные элементы $a_2 - a_1, 0, -5a_3$ и т. п. Теперь мы хотим ввести новую операцию ---~ научиться умножать наши элементы друг на друга. Наше умножение будет обозначаться символом $\land$ и называться грассмановым умножением. Умножение будет удовлетворять всем стандартным требованиям, кроме коммутативности, которую мы заменим на более странное свойство 4:
+
+	\begin{enumerate}
+		\item $(x \land y) \land z = x \land (y \land z);$
+		\item $(x + y) \land z = x \land z + y \land z;$
+		\item $z \land (x + y) = z \land x + z \land y;$
+		\item $a_i \land a_j = -a_j \land a_i;$
+	\end{enumerate}
+
+	Обратите внимание, пункты 1-3 относятся к любым элементам, а пункт 4 только к исходным $a_1, \ldots, a_n$. Простые следствия из свойств: $0 \land x = 0, a_i \land a_i = 0$. Для примера посчитаем <<квадрат>> элемента $a_1 \land a_2 + a_3$.
+	
+	\[ (a_1 \land a_2 + a_3) \land (a_1 \land a_2 + a_3) = a_1 \land a_2 \land (a_1 \land a_2 + a_3) + a_3 \land (a_1 \land a_2 + a_3) = 0 + a_1 \land a_2 \land a_3 + a_3 \land a_1 \land a_2 + 0 = \] \[ = a_1 \land a_2 \land a_3  - a_1 \land a_3 \land a_2 = a_1 \land a_2 \land a_3 + a_1 \land a_2 \land a_3 = 2a_1 \land a_2 \land a_3;\]
+
+	\begin{definition}
+		\textit{Грассмановым мономом} степени $k$ называется элемент вида $\alpha a_{i_1} \land \ldots \land a_{i_k}$, где $ i_1, \ldots i_k \in \{0, \ldots, n \}$, $\alpha$ ---~ некоторый коэффициент.
+	\end{definition}
+
+	Заметим, что если среди $i_1, \ldots i_k$ есть повторения, то моном равен нулю. Переменные в грассмановом мономе можно отсортировать, возможно, поменяв при этом знак. Точнее, при сортировке моном домножится на -1 в степени равной числу инверсий, то есть на знак перестановки.
+
+	\section{Объясните, что такое дифференциальная форма ранга $k$, и как вычисляется интеграл (2-го рода) от $k$-формы $\omega$ по $k$-мерному многообразию $\Omega \subseteq \mathbb{R}^n$. Запишите вычислительную формулу для поверхностного интеграла 2-го рода}
+
+	\begin{definition}
+		\textit{Дифференциальной формой} ранга $k$ (или дифференциальной $k$-формой) на $M \subseteq \mathbb{R}^n$ называется выражение вида $\sum\limits_{\{i_1, \ldots, i_k\} \subseteq \{1, \ldots, n\}} f_{i_1 \ldots i_k}(x)\diff x_{i_1} \land \ldots \land \diff x_{i_k}$, где $f_{i_1\ldots i_k}$ ---~ некоторые дифференцируемые\footnote{Часто ограничиваются гладкими функциями.} функции $f_{i_1\ldots i_k}:M \to \mathbb{R}$.
+	\end{definition}
+
+	Если вам очень понравился предыдущий билет, можно сказать, что это сумма грассмановых мономов степени $k$ от переменных $\diff x_1, \ldots \diff x_n$ с дифференцируемыми функциями в качестве коэффициентов. Можно считать, что среди чисел $i_1, \ldots, i_k$ нет повторений, так как мономы с повторениями всё равно зануляются.
+
+	Пусть имеются $k$-мерное многообразие $\Omega \subseteq \mathbb{R}^n$ с параметризацией $\varphi: M \to \Omega, M \subseteq \mathbb{R}^k$ и дифференциальная $k$-форма $\omega = \sum\limits_{\{i_1, \ldots, i_k\} \subseteq \{1, \ldots, n\}} f_{i_1 \ldots i_k}(x)\diff x_{i_1} \land \ldots \land \diff x_{i_k}$ на $\Omega$. Определим интеграл (2-го рода) $\omega$ по $\Omega$.
+
+	\[ \int\limits_\Omega \omega := \int\limits_M \sum_{\{i_1, \ldots, i_k\} \subseteq \{1, \ldots, n\}} f_{i_1 \ldots i_k} (\varphi(t)) \diff \varphi_{i_1} \land \ldots \land \diff \varphi_{i_k}; \]
+
+	Поясним, что творится в этой формуле. Во-первых, $\varphi_i : M \to \mathbb{R}$ ---~ это функция, соответствующая $i$-й координате $\varphi$. Во-вторых, $\diff \varphi_i$ ---~ это привычный дифференциал функции нескольких переменных, но теперь мы говорим, что это линейная комбинация грассмановых переменных $\diff t_1, \ldots, \diff t_k$. Когда мы грассманово перемножим эти дифференциалы, у нас останется выражение вида $f(t) \diff t_1 \land \ldots  \land \diff t_k$. Это так, ведь в любом слагаемом результата будут перемножаться $k$ переменных, одинаковые занулятся, останутся только слагаемые с различными, возможно, не в том порядке. Но мы можем привести порядок к правильному. После этих преобразований мы считаем интеграл как обычный кратный интеграл.
+\[\int\limits_M f \diff t_1 \land \ldots \land \diff t_k = \int\limits_M f \diff t_1 \ldots \diff t_k;  \]  
+
+	Для случая $k = 2$ это всё можно записать в следующую формулу.
+
+	\[\iint\limits_\Omega P\diff y \land \diff z + Q \diff z \land \diff x + R \diff x \land \diff y = \iint\limits_M \begin{vmatrix} P & Q & R \\ \frac{\partial \varphi_1}{\partial u} & \frac{\partial \varphi_2}{\partial u} & \frac{\partial \varphi_3}{\partial u} \\ \frac{\partial \varphi_1}{\partial v} & \frac{\partial \varphi_2}{\partial v} & \frac{\partial \varphi_3}{\partial v} \end{vmatrix} \diff u \diff v;\]
+
+	Обратите внимание, при $Q$ стоит $\diff z \land \diff x$, а не $\diff x \land \diff z$. 
+
+	\section{Что такое ориентация $k$-мерного многообразия? Как изменится интеграл 2-го рода от дифференциальной формы при смене ориентации многообразия (б. д.)?}
+
+	Пусть $\Omega \subseteq \mathbb{R}^n$ ---~ $k$-мерное связное\footnote{Напомним, многообразие называется гладким, если любые две его точки можно соединить проходяще по нему непрерывной кривой.} многообразие, и у него имеются две параметризации $\varphi: M \to \Omega, \psi: N \to \Omega; M, N \subseteq \mathbb{R}^k$. Предположим, что функция замены координат $c = \varphi^{-1} \circ \psi$ биективна и непрерывно дифференцируема.
+
+	\[ \begin{tikzcd}
+		M \arrow[swap]{rd}{\varphi} &  &\arrow[swap]{ll}{c} N \arrow{ld}{\psi} \\
+		& \Omega
+	\end{tikzcd} \]
+
+	Посмотрим на якобиан $J(c)$. Если бы где-то он был равен нулю, в окрестности этой точки $c$ была бы необратима. Значит он не равен нулю нигде. Поскольку $J(c)$ непрерывен и $\Omega$ связно, из этого следует, что он имеет постоянный знак. Тогда если он положителен, будем говорить, что $\varphi$ и $\psi$ задают одну и ту же ориентацию, а если отрицателен ---~ то разные. Таким образом мы определяем ориентацию как отношение эквивалентности с двумя классами на параметризациях многообразия.
+
+	Ориентация задаёт ориентацию на любом касательном пространстве $T_{x}\Omega$ как на векторном пространстве. Если мы назвали ориентацию некоторой параметризации положительной, то назовём положительным базис $T_x \Omega$, полученный из её производных.
+
+	При смене параметризации на имеющую противоположную ориентацию интеграл 2-го рода меняет знак. 
+
+	\section{Дайте определение согласованных ориентаций многообразия и его границы. Дайте определение дифференциала от $k$-формы. Запишите общую формулу Стокса.}
+	Будем обозначать границу многообразия $\Omega$ как $\partial \Omega$. Заметим, что если у $k$-мерного многообразия есть граница, то она имеет размерность $k - 1$.
+
+	\begin{definition}
+		Будем говорить, что ориентации $\Omega$ и $\partial \Omega$ согласованы, если для любой точки $x \in \partial \Omega$ для любого положительного базиса $v_1, \ldots v_{k - 1}$ в $T_x \partial \Omega$, базис $v_1, \ldots, v_{k - 1}, \vec{n}$ положителен в $T_x \Omega$, где $\vec{n}$ ---~ это вектор в $T_x \Omega$, перпендикулярный $T_x \partial \Omega$ и смотрящий наружу\footnote{Это можно формализовать, например, как отрицательное скалярное произведение с любым вектором, соединяющим $x$ и точку из окрестности $x$ из $\Omega$. Но лектор это никак не формализовал.} $\Omega$.
+	\end{definition}
+
+	Мы привыкли, что дифференциал суммы равен сумме дифференциалов. Поэтому для определения дифференциала от дифференциальной формы достаточно определить дифференциал от грассманова монома.
+
+	\[ \diff(f \diff x_{i_1} \land \ldots \land \diff x_{i_k}) := \diff f \land \diff x_{i_1} \land \ldots \land \diff x_{i_k}; \]
+
+	\begin{remark}
+		Дифференциал $k$-формы является $(k + 1)$-формой.
+	\end{remark}
+
+	Для примера посчитаем дифференциал от дифференциала некоторой функции $f:\mathbb{R}^n \to \mathbb{R}$.
+
+	\[\diff (\diff f) = \diff \left(\sum_{i = 1}^n \frac{\partial f}{\partial x_i}\diff x_i \right) = \sum_{i = 1}^n \sum_{j = 1}^n \frac{\partial^2 f}{\partial x_i \partial x_j} \diff x_j \land \diff x_i; \]
+
+	При этом слагаемые вида $\frac{\partial^2 f}{\partial x_i \partial x_i} \diff x_i \land \diff x_i$ сразу зануляются, а слагаемые вида $\frac{\partial^2 f}{\partial x_i \partial x_j} \diff x_j \land \diff x_i$ сократятся с $\frac{\partial^2 f}{\partial x_j \partial x_i} \diff x_i \land \diff x_j$. Значит $\diff(\diff f) = 0$.
+
+	Пусть теперь $\Omega \subseteq \mathbb{R}^n$ ---~ $k$-мерное многообразие с согласованными ориентациями на самом многообразии и на границе, а $\omega$ ---~ дифференциальная $(k - 1)$-форма на $\Omega$. Тогда верна (общая) формула Стокса:
+
+	\[ \int\limits_{\partial \Omega} \omega = \int\limits_\Omega \diff \omega; \] 
+
+	\section{Выведите из общей формулы Стокса частные случаи: формулу Ньютона-Лейбница, формулу Грина, формулу Гаусса-Остроградского.}
+
+	\subsection*{Формула Ньютона-Лейбница, $n = k = 1$}
+
+	Пусть наше многообразие это отрезок на прямой $[a; b]$. Его границей будет множество из двух точек $\{a, b\}$. Заметим, что точка ---~ это нульмерное многообразие и по нему можно интегрировать 0-формы (то есть просто функции). При чём этот интеграл будет с точностью до знака (знак как всегда определяется ориентацией) равен значению функции в точке. Если на отрезке мы берём стандартную ориентацию <<слева направо>>, то для границы это будет означать взятие $b$ с плюсом и $a$ с минусом. Итак, формула Стокса принимает следующий вид:
+	
+	\[F(b) - F(a) = \int\limits_a^b \diff F; \]
+	
+	Перепишем в более привычную запись.
+
+	\[\int\limits_a^b F'(x) \diff x = F(b) - F(a); \]
+
+	\subsection*{Формула Грина, $n = k = 2$}
+
+	Дифференциальная 1-форма в $\mathbb{R}^2$ имеет вид $P\diff x + Q \diff y$. Посчитаем её дифференциал
+
+	\[\diff (P \diff x + Q \diff y) = \left(\frac{\partial P}{\partial x}\diff x + \frac{\partial P}{\partial y}\diff y \right) \land \diff x +\left(\frac{\partial Q}{\partial x}\diff x + \frac{\partial Q}{\partial y}\diff y \right) \land \diff y = \frac{\partial P}{\partial y} \diff y \land \diff x + \frac{\partial Q}{\partial x} \diff x \land \diff y = \] \[ = \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) \diff x \land \diff y;  \]
+
+	Формула Стокса принимает следующий вид:
+
+	\[\int\limits_{\partial U} P\diff x + Q\diff y = \iint\limits_{U} \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)\diff x \diff y; \]
+
+	Здесь условие согласованности ориентации можно сформулировать как <<при обходе $\partial U$ по заданной параметризации $U$ всегда находится слева>>.
+
+	\subsection*{Формула Гаусса-Остроградского, $n = k = 3$}
+
+	Дифференциальная 2-форма в $\mathbb{R}^3$ имеет вид $P\diff y \land \diff x + Q \diff z \land \diff x + R \diff x \land \diff y$. Посчитаем её дифференциал.
+
+	\[\diff (P\diff y \land \diff z + Q \diff z \land \diff x + R \diff x \land \diff y) = \frac{\partial P}{\partial x} \diff x \land \diff y \land \diff z + \frac{\partial Q}{\partial y}\diff y \land \diff z \land \diff x + \frac{\partial R}{\partial z} \diff z \land \diff x \land \diff y  = \] \[ =\left( \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z} \right) \diff x \land \diff y \land \diff z; \]
+
+	Формула Стокса принимает следующий вид:
+
+	\[\iint\limits_{\partial V} P\diff y \land \diff x + Q \diff z \land \diff x + R \diff x \land \diff y = \iiint\limits_{V}\left( \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z} \right) \diff x\diff y\diff z; \]
 \end{document}
