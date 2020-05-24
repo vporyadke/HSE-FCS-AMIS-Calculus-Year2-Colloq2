@@ -22,6 +22,7 @@
 \renewcommand{\ellipsisgap}{0.03em}
 
 \newtheorem*{theorem}{Теорема}
+\newtheorem*{corollary}{Теорема}
 \newtheorem*{lemma}{Лемма}
 \newtheorem*{statement}{Утверждение}
 
@@ -32,3 +33,18 @@
 \newtheorem*{remark}{Замечание}
 
 \newcommand{\diff}{\mathrm{d}}
+
+\usepackage{systeme}
+\usepackage{tikz,pgfplots}
+\usepackage{commath}
+
+\makeatletter
+\newcommand*{\toto}[2]{\mathrel{
+  \settowidth{\@tempdima}{$\scriptstyle#1$}
+  \settowidth{\@tempdimb}{$\scriptstyle#2$}
+  \ifdim\@tempdimb>\@tempdima \@tempdima=\@tempdimb\fi
+  \mathop{\vcenter{
+    \offinterlineskip\ialign{\hbox to\dimexpr\@tempdima+1em{##}\cr
+    \rightarrowfill\cr\noalign{\kern.5ex}
+    \rightarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
+\makeatother
