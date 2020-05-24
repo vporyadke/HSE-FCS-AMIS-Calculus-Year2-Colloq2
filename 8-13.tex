@@ -1,0 +1,199 @@
+\usepackage{commath}
+
+\makeatletter
+\newcommand*{\toto}[2]{\mathrel{
+  \settowidth{\@tempdima}{$\scriptstyle#1$}
+  \settowidth{\@tempdimb}{$\scriptstyle#2$}
+  \ifdim\@tempdimb>\@tempdima \@tempdima=\@tempdimb\fi
+  \mathop{\vcenter{
+    \offinterlineskip\ialign{\hbox to\dimexpr\@tempdima+1em{##}\cr
+    \rightarrowfill\cr\noalign{\kern.5ex}
+    \rightarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
+\makeatother
+
+
+\title{Билеты 8-13}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\setcounter{section}{7}
+\section{Сформулируйте (б.д.) лемму Римана. Какова связь между порядком дифференцируемости $2\pi$-периодической функции и асимптотикой ее коэффицинтов Фурье? Ответ поясните.}
+\begin{lemma} (Риман).
+    Пусть $f$ абсолютно интегрируема на промежутке $(a, b)$. Тогда
+    $$
+        \lim\limits_{\omega\to\infty}\int_{a}^{b}f(x)\sin(\omega x)dx = 0
+    $$
+    $$
+        \lim\limits_{\omega\to\infty}\int_{a}^{b}f(x)\cos(\omega x)dx = 0
+    $$
+\end{lemma}
+
+\begin{corollary}
+    Если $f$ интегрируемая и $2\pi$-периодическая, то ее коэффициенты $a_n, b_n$ ряда Фурье стремятся к 0ю
+\end{corollary}
+
+\begin{corollary}
+    Пусть $f$ -- $2\pi$-периодическая и имеет $s - 1$ производную, а $f^{(s - 1)}$ -- кусочно-гладкая. Тогда ряд Фурье для $f^{(s)}$ получается $s$-кратным почленным дифференцированием ряда Фурье для $f$. При этом, $a_n, b_n = \overline{o}\left(\frac{1}{k^s}\right)$ при $k\to\infty$
+\end{corollary}
+Почему второе следствие верно? Интуитивно: чтобы выполнялась лемма Римама, требуется, чтобы коэффициенты стремились к 0. При дифференцировании $s - 1$ раз у нас столько же раз <<вылезет>> $k$ из косинуса и синуса, поэтому, чтобы все еще выполнялась сходимость к 0, нужно, чтобы $a_n, b_n = \overline{o}\left(\frac{1}{k^s}\right)$.
+
+\section{Дайте определение преобразования Фурье для функции $\mathbb{R}\to\mathbb{C}$, приведите пример вычисления преобразования Фурье. Пусть $f\in L_1(\mathbb{R})$. Сформулируйте основную теорему об образе преобразования Фурье.}
+\begin{definition}
+    Пусть $f\colon\mathbb{R}\to\mathbb{C}$. Если выражение $$\hat{f}(y) = F[f](y) = v.p.\int_{-\infty}^{+\infty}f(x)e^{ixy}dx$$ определено для всех $y\in\mathbb{R}$, то $\hat{f}\colon\mathbb{R}\to\mathbb{C}$ называется преобразованием Фурье.
+\end{definition}
+
+Например, пусть $f(x) = I_{[-1, 1]}(x)$. Тогда
+$$
+    \hat{f}(y) = \int_{-\infty}^{+\infty}I_{[-1, 1]}(x)e^{ixy}dx = \int_{-1}^{1}e^{ixy}dx = \int_{-1}^{1}\cos(xy)dx + i\int_{-1}^{1}\sin(xy)dx = \frac{\sin(xy)}{y}\Big|_{-1}^{1} = 2\frac{\sin y}{y}
+$$
+
+\begin{definition}
+    $L_1(\mathbb{R})$ -- пространство функций, абслолютно интегрируемых на $\mathbb{R}$.
+\end{definition}
+
+\begin{theorem} (Основная теорема об образе Фурье)
+    Если $f\in L_1(\mathbb{R})$, то
+    \begin{enumerate}
+        \item Функция $\hat{f}$ корректно определена.
+        \item Функция $\hat{f}$ непрерывна.
+        \item $\lim\limits_{y\to\pm\infty}\hat{f}(y) = 0$
+    \end{enumerate}
+\end{theorem}
+
+\section{Что вы можете сказать о функции $\hat{f}$, если (1) $f$ четная и вещественнозначная (2) $f$ нечетная и вещественнозначная.}
+\begin{lemma}
+    \begin{enumerate}
+        \item Если $f$ -- четная, то $F[f]$ -- четная и вещественнозначная.
+        \item Если $f$ -- нечетная, то $F[f]$ -- нечетная мнимозначная
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Напрямую следует из того, что
+    $$
+    F[f](y) = \int_{-\infty}^{\infty}f(x)e^{ixy}dx
+    =
+    \int_{-\infty}^{\infty}f(x)\cos(xy)dx + i\int_{-\infty}^{\infty}f(x)\sin(xy)dx
+    $$
+    Если $f$ четная, то второй слагаемое зануляется, тогда Фурье-образ вещественнозначный и вещественнозначный и четный (не забываем, что четность смотрим по $y$, а не по $x$). Аналогично, если $f$ нечетная, то зануляется первое, а Фурье-образ будет нечетный и мнимозначный.
+\end{proof}
+
+\section{Дайте определение интеграла Фурье и обратного преобразования Фурье. Сформулируйте и докажите теорему о свертке. Чему равно преобразование Фурье от произведения двух функций?}
+\begin{definition}
+    Интегралом Фурье от функции $f\colon \mathbb{R}\to\mathbb{C}$ в точке $x$ называется выражение $$\frac{1}{2\pi} v.p.\int_{-\infty}^{\infty}\hat{f}(y)e^{-ixy}dy$$
+\end{definition}
+
+\begin{definition}
+    Пусть $f$ дифференцируемая функция, тогда преобразование
+        $$\hat{f}(y) \mapsto f(x) = \frac{1}{2\pi} v.p.\int_{-\infty}^{\infty}\hat{f}(y)e^{-ixy}dy$$
+    называется обратным преобразованием Фурье.
+\end{definition}
+
+\begin{theorem} (О свертке)
+    Если $f, g\in L_1(\mathbb{R})$, то $F(f\star g) = F[f]\cdot f[g]$.
+\end{theorem}
+\begin{proof}
+    $$
+    F[f\star g](y) = \int_{-\infty}^{+\infty}(f - g)(x)e^{ixy}dx = \int_{-\infty}^{+\infty}\left(\int_{-\infty}^{+\infty}f(s)g(x - s)ds\right)e^{ixy}dx
+    $$
+    Благодаря абсолютной интегрируемости, можем поменять порядки интегрирования, а следовательно, просто в виде кратного:
+    $$
+    \iint_{\mathbb{R}^2} f(s)g(x - s)e^{ixy}dxds
+    =
+    \begin{bmatrix}
+        u = s \\
+        v = x - s \\
+        dxds = dudv
+    \end{bmatrix}
+    =
+    \int_{-\infty}^{+\infty} f(u)e^{iuy}du\cdot \int_{-\infty}^{+\infty} g(v)e^{ivy}dv = F[f] \cdot F[g].
+    $$
+    Аналогично можно доказать для обратного преобразования.
+\end{proof}
+
+\begin{corollary}
+    $F[f\cdot g] = \frac{1}{2\pi}F[f]\star F[g]$
+\end{corollary}
+
+\section{Выведите формулу для производной $\hat{f}(y)$. Какова связь дифференцируемости функции $f(x)$ и асимптотики ее преоразования Фурье $\hat{f}(y)$ при $y\to\infty$}
+
+\begin{statement}
+    Пусть $f(x)$ такова, что $f(x)(1 + \abs{x})^k\in L_1(\mathbb{R})$. Тогда $\hat{f} = F[f]$ дифференцируема $k$ раз, причем производные $\hat{f}$ можно вычислить дифференцированием под знаком интеграла.
+\end{statement}
+
+\begin{proof}
+    Это следует из теорем прошлого семестра (что можно дифференцировать по параметру, в нашем случае по $y$, под знаком интеграла, если есть равномерная сходимость по $x$).
+    $$
+    F[f](y) = v.p.\int_{-\infty}^{+\infty}f(x)e^{ixy}dx
+    $$
+    $\forall\; m \le k$ верно
+    $$
+    \abs{f(x)e^{ixy}(ix)^m} \le \abs{f(x)}(1 + \abs{x})^m
+    $$
+    В левой части стоит просто продифференцированное $m$ раз подынтегральное выражение в преобразовании Фурье. Неравенство следует из ограниченности $\abs{e^{ixy}\cdot i^m} \le 1$. В правой части стоит функция, интегрируемая на $\mathbb{R}$ (по условию).\\
+    При этом левая часть сходится равномерно по $y$. Значит, можем пользоваться теоремой из прошлого семестра:
+    $$
+        \frac{d^m}{dy^m}\hat{f}(y) = \int_{-\infty}^{+\infty}f(x)e^{ixy}(ix)^mdx
+    $$
+    Отсюда же получаем формулу:
+    $$
+    \frac{d^m}{dy^m}F[f](y) = F[(ix)^m f(x)]
+    $$
+\end{proof}
+
+\begin{statement}
+    Пусть $f$ дифференцируема $k$ раз во всех точках, причем $f^{(m)}\in L_1(\mathbb{R})$ при $m = 0, \ldots, k$ и $f^{(m)}(x)\to 0$ при $x\to\infty$ и $m = 0, \ldots, k$, тогда $\hat{f}(y) = \overline{o}\left(\frac{1}{\abs{y}^k}\right)$ при $t\to\infty$
+\end{statement}
+
+\begin{proof}
+    Запишем $F[f^(k)]$:
+    $$
+    \int_{-\infty}^{+\infty}f^{(k)}(x)e^{ixy}dx = \int_{-\infty}^{+\infty}e^{ixy}df^(k - 1) = e^{ixy}f^{(k - 1)}(x)\Big|_{-\infty}^{+\infty} - \int_{-\infty}^{+\infty}f^{(k - 1)}(x)\cdot (iy)e^{ixy}dx =
+    \begin{bmatrix}
+    \textrm{Далее аналогично.} \\
+    \textrm{Также пользуемся тем, что }\\
+    \lim\limits_{x\to\infty}f^{(m)} = 0\;\;\forall m = 0, \ldots, k
+    \end{bmatrix}
+    $$
+    $$
+    =
+    \int_{-\infty}^{+\infty}f(x)e^{ixy}(-1)^m (iy)^m dx
+    =
+    (-iy)^k F[f](y) = (-iy)^k \hat{f}(y)
+    $$
+    Также мы знаем, что если функция абсолютно интегрируемая, то ее Фурье-образ стремится к 0 (см. билет 9). Тогда
+    $$f^{(k)}\in L_1(\mathbb{R}) \Rightarrow \abs{F[f^(k)](y)} = y^k F[f](y) \to 0 \Rightarrow \hat{f}(y) = \overline{o}\left(\frac{1}{\abs{y^k}}\right)$$
+    
+    P.S. И также, абсолютно аналогично с предыдущим пунктом выведем:
+    $$
+        F\left[\frac{d^m}{dx^m}f(x)\right] = (-iy)^m F[f]
+    $$
+\end{proof}
+
+\section{Сформулируйте и докажите равенство Планшереля для преобразования Фурье.}
+\begin{theorem} (Равенство Планшереля)
+    Пусть $f, g\in L_1(\mathbb{R})$ ($f, g\colon \mathbb{R}\to\mathbb{C}$) и, кроме того, $f'' \in L_1(\mathbb{R})$, а также $f(x), f'(x)\to 0$ при $x\to\infty$. Тогда
+    $$
+    \int_{-\infty}^{+\infty}f(x)\overline{g(x)}dx = \frac{1}{2\pi}\int_{-\infty}^{+\infty}\hat{f}(y)\overline{\hat{g}(y)}dy
+    $$
+\end{theorem}
+
+\begin{proof}
+    Функция дифференцируема, поэтому для нее работает формула обращения Фурье:
+    $$
+    f(x) = \frac{1}{2\pi} v.p.\int_{-\infty}^{+\infty}\hat{f}(y)e^{-ixy}dy
+    $$
+    Тогда
+    $$
+    \int_{-\infty}^{+\infty}f(x)\overline{g(x)}dx = \int_{-\infty}^{+\infty}\frac{1}{2\pi}\left(\int_{-\infty}^{+\infty}\hat{f}(y)e^{ixy}dy\right)\overline{g(x)}dx
+    =
+    \frac{1}{2\pi}\int_{-\infty}^{+\infty}\hat{f}(y)\left(\int_{-\infty}^{+\infty}\overline{g(x)}\cdot \overline{e^{ixy}}dx\right)dy
+    $$
+    $$
+    =
+    \frac{1}{2\pi}\int_{-\infty}^{+\infty}\hat{f}(y)\overline{\left(\int_{-\infty}^{+\infty}g(x)e^{ixy}dx\right)}dy = \frac{1}{2\pi}\int_{-\infty}^{+\infty}\hat{f}(y)\overline{\hat{g}(y)}dy
+    $$
+\end{proof}
+\end{document}
