@@ -137,8 +137,7 @@
 	\begin{proof}
 		Положим $\tau=t-x$.
 		
-		$\int\limits_{\mathbb{R}^n} f(x)g(t-x)dx=-\int\limits_{-\mathbb{R}^n} f(t-\tau)g(\tau)d\tau$ 
-		(здесь имеется в виду, что порядок обхода $\mathbb{R}^n$ при замене координат изменился на противоположный) $ =\int\limits_{\mathbb{R}^n} f(t-\tau)g(\tau)d\tau$
+		$\int\limits_{\mathbb{R}^n} f(x)g(t-x)dx =\int\limits_{\mathbb{R}^n} f(t-\tau)g(\tau)d\tau$ - область интегрирования не поменялась, а функция домножилась на модуль якобиана замены. В данном случае он равен $1$.
 	\end{proof}
 	\begin{definition}
 		\textit{Сверткой} $2\pi$-периодических функций $f, g: \mathbb{R} \to \mathbb{R}$ называется $(f*g)(t)=\int\limits_{-\pi}^{\pi} f(x)g(t-x)dx$
