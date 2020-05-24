@@ -42,7 +42,7 @@
 	1-3 очевидны. 3' сначала рассмотрим для непрерывной на отрезке функции. 
 	От противного: пусть на отрезке существует какая-то точка $c$, в которой функция принимает ненулевое значение. Тогда $f^2(c) > 0$. В силу непрерывности есть такая окрестность $(c-\delta; c+\delta)$, в которой $f^2(x) \ge \epsilon > 0$.
 	
-	$\int\limits_a^b f^2(x) \ge \int\limits_{c-\delta}^{c+\delta} f(x) \ge 2\delta\epsilon > 0$
+	$\int\limits_a^b f^2(x) \ge \int\limits_{c-\delta}^{c+\delta} f^2(x) \ge 2\delta\epsilon > 0$
 	
 	Для $\hat C$ отрезок разваливается на конечное число отрезков непрерывности, применим к ним предыдущее.
 	
@@ -50,7 +50,7 @@
 	
 	Для нашего пространства оно имеет вид 
 	
-	$\int\limits_a^b f(x)g(x)dx \le \int\limits_a^b f^2(x)dx \int\limits_a^b g^2(x)dx$
+	$\int\limits_a^b f^2(x)g^2(x)dx \le \int\limits_a^b f^2(x)dx \int\limits_a^b g^2(x)dx$
 	
 	\begin{definition}
 		Множество элементов  ${\psi_i} \in V$ называется \textit{ортогональной} системой, если для любой пары $\langle \psi_i, \psi_j\rangle=0$. Если при этом $\| \psi_i \|=1$ $\forall i$, то система \textit{отронормирована}.
@@ -81,12 +81,12 @@
 	 \end{definition}
  
 	 \begin{definition}
-	 	\textit{Ряд Фурье по тригонометрической системе} - это сумма вида $\frac{f_0}{\sqrt{2\pi}} +\sum \frac{f_k}{\sqrt{\pi}}cos(kx) + \frac{\hat f_k}{\sqrt{\pi}}sin(kx)$, где $f_0=\frac{1}{\sqrt{2\pi}}\int\limits_{-\pi}^{\pi} f(x) dx$, $f_k=\frac{1}{\sqrt{\pi}}\int\limits_{-\pi}^{\pi} f(x)cos(kx), \hat f_k=\frac{1}{\sqrt{\pi}}\int\limits_{-\pi}^{\pi} f(x)cos(kx) dx$
+	 	\textit{Ряд Фурье по тригонометрической системе} - это сумма вида $\frac{f_0}{\sqrt{2\pi}} +\sum \frac{f_k}{\sqrt{\pi}}cos(kx) + \frac{\hat f_k}{\sqrt{\pi}}sin(kx)$, где $f_0=\frac{1}{\sqrt{2\pi}}\int\limits_{-\pi}^{\pi} f(x) dx$, $f_k=\frac{1}{\sqrt{\pi}}\int\limits_{-\pi}^{\pi} f(x)cos(kx), \hat f_k=\frac{1}{\sqrt{\pi}}\int\limits_{-\pi}^{\pi} f(x)sin(kx) dx$
 	 \end{definition}
  
  	Обычно ряд Фурье записывают как $\frac{a_0}{2} + \sum a_k cos(kx) + b_k sin(kx)$,
  	
- 	где $a_0=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x) dx$, $a_k=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x)cos(kx), b_k=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x)cos(kx) dx$
+ 	где $a_0=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x) dx$, $a_k=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x)cos(kx), b_k=\frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x)sin(kx) dx$
 	
 	\section{Неравенство Бесселя (идея доказательства). Определения замкнутой и полной ортонормированных систем (ОНС). Тождество Парсеваля для замкнутой ОНС.}
 	
@@ -94,9 +94,9 @@
 		(неравенство Бесселя) $\sum_{i=1}^{\infty} f_k^2 \le \| f \|^2$, где $f$ - элемент векторного пространства $V$ с ортонормированной системой $\{{\psi_i}\}$, $f_i = \langle f, \psi_i \rangle$ 
 	\end{theorem}
 	\begin{proof}
-		$0 \le \| f- \sum_{i=1}^{n} f_i \psi_i\|^2=\|f\|^2-\sum_{i=1}^{n} \|\langle f, \psi_i \rangle \|^2=\|f\|^2-\sum_{i=1}^{n} f_i ^2$ 
+		$0 \le \| f- \sum_{i=1}^{n} \langle f \psi_i \rangle \|^2=\|f\|^2-\sum_{i=1}^{n} \|\langle f, \psi_i \rangle \|^2=\|f\|^2-\sum_{i=1}^{n} f_i ^2$ 
 		
-		$\sum_{i=1}^{n} f_i^2$ ограничена сверху $\Rightarrow$  сходится. Переходим к пределу, получаем требуемое. 
+		$\sum_{i=1}^{n} f_i^2$ ограничена сверху $\|f\|^2$ $\Rightarrow$  сходится. Переходим к пределу, получаем требуемое. 
 	\end{proof}
 
 	\begin{definition}
@@ -108,7 +108,7 @@
 	\end{definition}
 
 	\begin{theorem} 
-		(тождество Парсеваля) Для замкнутой ОНС  $\sum_{i=1}^{\infty} f_k^2 = \| f \|^2$ 
+		(тождество Парсеваля) Для замкнутой ортонормированной системы  $\sum_{i=1}^{\infty} f_k^2 = \| f \|^2$ 
 	\end{theorem}
 	\begin{proof}
 		Зафиксируем $\epsilon$.
