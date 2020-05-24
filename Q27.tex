@@ -1,0 +1,50 @@
+\ProvidesFile{Q27.tex}[Билет 27]
+
+\section{Билет 27. Сформулируйте формулу Грина и докажите её для области $\Omega \subset \mathbb{R}^2$ вида $\Omega = [a, b] \times [c, d]$ (прямоугольник).}
+
+\begin{theorem}{Формула Грина.}\\
+    Пусть $U \subset \mathbb{R}^2$ -- связное подмножество, ограниченное кусочно-гладкой кривой $\partial U = \Gamma$ (граница множества $U$).
+    Зафиксируем ориентацию на $\Gamma$, обход вдоль которой всегда оставляет область $U$ слева. Пусть функции $P(x, y), Q(x, y)$ дифференцируемы
+    в некоторой окрестности $U$. Тогда верно следующее:
+    \begin{enumerate}
+        \item \[ \int\limits_{\Gamma} P(x, y)dx = \iint\limits_{U} -\frac{\partial P}{\partial y}dxdy \]
+        \item \[ \int\limits_{\Gamma} Q(x, y)dy = \iint\limits_{U} \frac{\partial Q}{\partial x}dxdy \]
+        \item \[ \int\limits_{\Gamma} Pdx + Qdy =
+                \iint\limits_{U} \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dxdy \text{ -- формула Грина}\]
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    План:
+    \begin{enumerate}
+        \item Докажем формулу 1.
+        \item Формула 2 доказывается аналогично при помощи замены $x \leftrightarrow y$.
+        \item Формула 3 суть сумма формул 1 и 2.
+    \end{enumerate}
+    Будем предполагать, что $U = \left\{ (x, y) \, | a \leqslant x \leqslant b, c \leqslant y \leqslant d \right\}$,
+    т.е. $U$ -- прямоугольник.\\
+    $\Gamma = \partial U = \Gamma_1 \cup \Gamma_2 \cup \Gamma_3 \cup \Gamma_4$, где $\Gamma_1, \Gamma_2$ -- горизонтальные отрезки ($y = c, y = d$),
+    а $\Gamma_3, \Gamma_4$ -- вертикальные отрезки. Тогда:
+    \[
+        \int\limits_{\Gamma} Pdx =
+        \int\limits_{\Gamma_1} Pdx + \int\limits_{\Gamma_2} Pdx + \int\limits_{\Gamma_3} Pdx + \int\limits_{\Gamma_4} Pdx
+    \]
+    Заметим, что $\int\limits_{\Gamma_3} Pdx + \int\limits_{\Gamma_4} Pdx = 0$,
+    т.к. на вертикальных отрезках выполнено, что $x = const \Rightarrow dx = 0$.\\
+    Параметризуем: $\Gamma_1 = \begin{cases} x = t\\ y = c\end{cases} t \in [a, b]$, $\Gamma_2 = \begin{cases} x = t\\ y = d\end{cases} t \in [b, a]$.
+    Интегрируем по определению:
+    \[
+        \int\limits_{a}^{b} P(t, c)dt - \int\limits_{a}^{b} P(t, d)dt =
+        \int\limits_{a}^{b} \left[P(t, c) - P(t, d) \right] dt = \star
+    \]
+    Заметим, что подынтегральное выражение равно (по формуле Ньютона-Лейбница):
+    \[
+        \int\limits_{d}^{c} \frac{\partial P}{\partial y}(t, s)ds =
+        -\int\limits_{c}^{d} \frac{\partial P}{\partial y}(t, s)ds
+    \]
+    Подставим:
+    \[
+        \star = -\int\limits_a^b \left[\int\limits_{c}^{d} \frac{\partial P}{\partial y}(t, s)ds \right]dt = [\text{Переходим к кратному интегралу}] =
+        -\iint\limits_{U} \frac{\partial P}{\partial y}dxdy
+    \]
+\end{proof}

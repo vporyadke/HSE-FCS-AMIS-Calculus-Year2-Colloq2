@@ -1,0 +1,64 @@
+\ProvidesFile{Q25.tex}[Билет 25]
+
+\section{Билет 25. Дайте определение криволинейного интеграла 2-го рода и объясните, как такие интегралы вычисляются.}
+Пусть $U \subset \mathbb{R}^n$ и $f: U \to \mathbb{R}$ -- непрерывная функция, $\gamma \subset U$ -- кривая
+и $\gamma = \{x_j = \varphi_j(t) |\, j = 1, ..., n, \, t \in [a, b]\}$.
+Пусть $(\tau, c)$ -- размеченное разбиение отрезка $[a, b]$, т.е. $\tau = (a = t_0 < t_1 < ... < t_m = b), c_i \in [t_{i - 1}, t_i]$.
+
+\textit{Мотивация.} Хотим определить $\int\limits_{\gamma} f(x_1, ..., x_n)dx_1$.
+
+\begin{definition}
+    Определим интегральную сумму (2-го рода) по кривой $\gamma$:
+    \[
+        S_{\tau, f, \gamma}^{II, \, x_1} = \sum_{i = 1}^{m} f\left[\varphi(c_i)\right] \Delta x_1
+    \]
+    \[
+        \Delta x_1 = \varphi_1(t_i) - \varphi_1(t_{i - 1})
+    \]
+\end{definition}
+
+\begin{definition}
+    Предел $\lim\limits_{|\tau| \to 0} S_{\tau, f, \gamma}^{II} = \int\limits_{\gamma} f(x_1, ..., x_n)dx_1$ называется
+    криволинейным интегралом 2-го рода от функции $f$ по кривой $\gamma$ по переменной $x_1$.
+\end{definition}
+
+\begin{remark}
+    $\int\limits_{\gamma} f(x_1, ..., x_n)dx_1$  <<почти>> (т.е. с точностью до знака) не зависит от параметризации кривой $\gamma$.
+\end{remark}
+
+\begin{remark}
+    $dx_1 = d\varphi_1(t) = \varphi_1^{'}(t)dt$
+\end{remark}
+
+\begin{statement}
+    Пусть $\gamma$ задана параметрически: $x_j = \varphi_j(t), t \in [a, b]$ и $\varphi_j \in C^{1}([a, b])$. Тогда:
+    \[
+        \int\limits_{\gamma} f(x_1, ..., x_n)dx_1 =
+        \int\limits_{a}^{b} f[\varphi_1(t), ..., \varphi_n(t)] \varphi_1^{'}(t)dt
+    \]
+    Аналогично определяются интегралы по любой другой координате.
+\end{statement}
+
+\textbf{Пример.}
+\[
+    \int\limits_{\gamma}1dx_1 = \int\limits_a^b \varphi_1^{'}(t)dt = \int\limits_a^b d(\varphi_1(t)) = \varphi_1(b) - \varphi_1(a)
+    \text{ -- полное изменение первой координаты при движении по кривой.}
+\]
+
+\begin{remark}
+    Более общо, можно брать интегралы от выражений вида $P_1(x_1, ..., x_n)dx_1 + P_2(x_1, ..., x_n)dx_2 + ... + P_n(x_1, ..., x_n)dx_n = \omega$:
+    \[
+        \int\limits_{\gamma} \omega :=
+        \int\limits_{\gamma} P_1dx_1 + ... + \int\limits_{\gamma} P_ndx_n =
+        \int\limits_{a}^{b} \left[P_1(\varphi(t)) P_1^{'} + P_n(\varphi(t)) P_n^{'}\right]dt
+    \]
+\end{remark}
+
+\begin{definition}
+    Выражения вида $P_1(x_1, ..., x_n)dx_1 + P_2(x_1, ..., x_n)dx_2 + ... + P_n(x_1, ..., x_n)dx_n$ называются дифференциальными 1-формами
+    (или формами ранга 1).
+\end{definition}
+
+\begin{definition}
+    Выражения вида $\int\limits_{\gamma} \omega$ называются интегралами 2-го рода от 1-формы $\omega$ по кривой $\gamma$.
+\end{definition}

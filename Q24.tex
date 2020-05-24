@@ -1,0 +1,54 @@
+\ProvidesFile{Q24.tex}[Билет 24]
+
+\section{Билет 24. Дайте определение криволинейного интеграла 1-го рода и объясните, как такие интегралы вычисляются.}
+Пусть $U \subset \mathbb{R}^n$ и $f: U \to \mathbb{R}$ -- непрерывная функция, $\gamma \subset U$ -- кривая
+и $\gamma = \{x_j = \varphi_j(t) |\, j = 1, ..., n, \, t \in [a, b]\}$.
+Пусть $(\tau, c)$ -- размеченное разбиение отрезка $[a, b]$, т.е. $\tau = (a = t_0 < t_1 < ... < t_m = b), c_i \in [t_{i - 1}, t_i]$.
+\begin{definition}
+    $|\tau| = \max\limits_{i}(t_i - t_{i - 1})$ -- диаметр разбиения $\tau$.
+\end{definition}
+
+\begin{remark}
+    Более общее определение: $|\tau| = \max\limits_{i}(d_2(\varphi[t_i], \varphi[t_{i - 1}])$, где $d_2$ -- евклидова метрика.
+\end{remark}
+
+\begin{definition}
+    Определим интегральную сумму (1-го рода) по кривой $\gamma$:
+    \[
+        S_{\tau, f, \gamma}^{I} = \sum_{i = 1}^{m} f\left[\varphi(c_i)\right] \Delta l_i
+    \]
+    \[
+        \Delta l_i = d_2(\varphi(t_i), \, \varphi(t_{i - 1})) = \sqrt{\sum_{j = 1}^{n} (\varphi_j(t_i) - \varphi_j(t_{i - 1}))^2}
+    \]
+\end{definition}
+
+\begin{definition}
+    Предел $\lim\limits_{|\tau| \to 0} S_{\tau, f, \gamma}^{I} = \int\limits_{\gamma} f(x_1, ..., x_n)dl$ называется
+    криволинейным интегралом 1-го рода от функции $f$ по кривой $\gamma$.
+\end{definition}
+
+\begin{remark}
+    $\int\limits_{\gamma} f(x_1, ..., x_n)dl$ не зависит от параметризации кривой $\gamma$.
+\end{remark}
+
+\begin{remark}
+    $dl$ называется элементом длины кривой. По теореме Пифагора:
+    \[
+        dl = \sqrt{(dx_1)^2 + ... + (dx_n)^2} = \left[x_j = \varphi_j(t)\right] =
+        \sqrt{(\varphi_1^{'}(t)dt)^2 + ... + (\varphi_n^{'}(t)dt)^2} =
+        \sqrt{\varphi_1^{'}(t)^2 + ... + \varphi_n^{'}(t)^2}dt
+    \]
+\end{remark}
+
+\begin{statement}
+    Пусть $\gamma$ задана параметрически: $x_j = \varphi_j(t), t \in [a, b]$ и $\varphi_j \in C^{1}([a, b])$. Тогда:
+    \[
+        \int\limits_{\gamma} f(x_1, ..., x_n)dl =
+        \int\limits_{a}^{b} f[\varphi_1(t), ..., \varphi_n(t)]\sqrt{\varphi_1^{'}(t)^2 + ... + \varphi_n^{'}(t)^2}dt
+    \]
+\end{statement}
+
+\textbf{Пример.}
+\[
+    \int\limits_{\gamma}1dl = \int\limits_a^b \sqrt{\sum_i (\varphi_i^{'})^2}dt \text{ -- длина кривой.}
+\]
